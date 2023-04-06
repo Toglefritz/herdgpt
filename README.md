@@ -1,6 +1,10 @@
 # HerdBPT
 
-> Can a team of AI agents accomplish what one AI instance alone cannot?
+![Ron Burgundy assembling the AI team](assets/ai_team_assemble.gif)
+
+> *AI team, assemble!*
+
+## Can a team of AI agents accomplish what one AI instance alone cannot?
 
 In this project we are embarking on a grand experiment. The project involves setting up a team of
 multiple Large Language Model (LLM) agents, such as GPT 3.5 and GPT 4, each with a specific role, to
