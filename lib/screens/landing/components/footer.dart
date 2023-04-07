@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
-import 'package:herdgpt/screens/landing/privacy_policy/privacy_policy_route.dart';
-import 'package:herdgpt/screens/landing/terms_and_conditions/terms_and_conditions_route.dart';
 
 import '../../../values/insets.dart';
+import '../../privacy_policy/privacy_policy_route.dart';
+import '../../terms_and_conditions/terms_and_conditions_route.dart';
 import 'footer_button.dart';
 
 /// THe [Footer] appears at the bottom of the [HomeView] and contains a set of navigational

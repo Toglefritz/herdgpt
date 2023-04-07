@@ -5,7 +5,6 @@ import 'package:herdgpt/components/navigable_page.dart';
 
 /// Classes extending [NavigablePageController] are controllers for navigable pages within the app. Each page is
 /// tagged with a Firebase event that allows for tracking of page usage.
-
 abstract class NavigablePageController<T extends NavigablePage> extends State<T> {
   @override
   void initState() {

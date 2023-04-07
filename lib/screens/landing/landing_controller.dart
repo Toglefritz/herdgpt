@@ -1,17 +1,18 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../components/navigable_page_controller.dart';
+import '../authentication/authentication_route.dart';
 import 'landing_route.dart';
 import 'landing_view.dart';
 
 /// Controller for the [LandingRoute].
-
 class LandingController extends NavigablePageController<LandingRoute> {
   /// Handles taps on the main CTA button on the landing page
   void letsGoooooooo() {
-    // TODO navigate to team setup route
+    context.go(const AuthenticationRoute().screenName);
   }
 
   @override

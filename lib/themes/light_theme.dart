@@ -18,9 +18,9 @@ ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
   useMaterial3: true,
   primaryColor: Colors.amber,
-  scaffoldBackgroundColor: Colors.grey[200],
+  scaffoldBackgroundColor: Colors.grey[300],
   primaryColorDark: const Color(0xff212121),
-  primaryColorLight: Colors.grey[100],
+  primaryColorLight: Colors.grey[300],
   fontFamily: GoogleFonts.mavenPro().fontFamily,
   appBarTheme: const AppBarTheme(
     elevation: 0,

@@ -1,7 +1,10 @@
 import 'package:go_router/go_router.dart';
+import 'package:herdgpt/screens/authentication/authentication_route.dart';
+import 'package:herdgpt/screens/create_account/create_account_route.dart';
 import 'package:herdgpt/screens/landing/landing_route.dart';
-import 'package:herdgpt/screens/landing/privacy_policy/privacy_policy_route.dart';
-import 'package:herdgpt/screens/landing/terms_and_conditions/terms_and_conditions_route.dart';
+import 'package:herdgpt/screens/login/login_route.dart';
+import 'package:herdgpt/screens/privacy_policy/privacy_policy_route.dart';
+import 'package:herdgpt/screens/terms_and_conditions/terms_and_conditions_route.dart';
 
 /// GoRouter configuration.
 ///
@@ -19,6 +22,18 @@ GoRouter router = GoRouter(
     GoRoute(
       path: const PrivacyPolicyRoute().screenName,
       builder: (context, state) => const PrivacyPolicyRoute(),
+    ),
+    GoRoute(
+      path: const LoginRoute().screenName,
+      builder: (context, state) => const LoginRoute(),
+    ),
+    GoRoute(
+      path: const CreateAccountRoute().screenName,
+      builder: (context, state) => const CreateAccountRoute(),
+    ),
+    GoRoute(
+      path: const AuthenticationRoute().screenName,
+      builder: (context, state) => const AuthenticationRoute(),
     ),
   ],
 );

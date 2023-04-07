@@ -5,8 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:herdgpt/screens/landing/components/footer.dart';
 
 import '../../components/app_bar/main_app_bar.dart';
+import '../../components/primary_cta_button.dart';
 import '../../values/insets.dart';
-import 'components/primary_cta_button.dart';
 import 'components/ron_burgundy_gif.dart';
 import 'landing_controller.dart';
 
@@ -23,7 +23,7 @@ class LandingView extends StatelessWidget {
       appBar: const MainAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: insetsLarge),
-        child: Center(
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
@@ -73,12 +73,14 @@ class LandingView extends StatelessWidget {
                 ),
               ),
               // TODO add more product info
+              const Padding(
+                padding: EdgeInsets.only(top: insetsLarge),
+                child: Footer(),
+              ),
             ],
           ),
         ),
       ),
-      // Footer
-      bottomNavigationBar: const Footer(),
     );
   }
 }

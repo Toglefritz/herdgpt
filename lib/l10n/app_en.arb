@@ -1,9 +1,20 @@
 {
+  "continueWithGoogle": "Continue with Google",
+  "createAccount": "Create account",
+  "createAccountButtonText": "Make it so",
+  "createAccountMessage": "Create a shiny new account!",
+  "errorCreatingAccount": "Whelp. Creating your account didn't quite work. Don't worry. We'll check on the logs for this.'",
   "getStartedButton": "Let's Go!",
   "landingPageTitle": "Build things with a crack team of AI teammates.",
   "legalStuff": "Legal stuff:",
+  "login": "Login",
+  "loginButtonText": "Become logged in",
+  "passwordConfirmationFieldLabel": "Password again",
+  "passwordFieldLabel": "Password",
   "privacyPolicy": "Privacy Policy",
   "siteTitle": "HerdGPT",
   "termsAndConditions": "Terms and Conditions",
+  "usernameFieldLabelHint": "Username (an email)",
+  "welcomeBack": "Welcome back!",
   "willFerrellCaption": "AI team, assemble!"
 }

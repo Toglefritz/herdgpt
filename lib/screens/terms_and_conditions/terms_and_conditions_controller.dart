@@ -9,7 +9,7 @@ import 'terms_and_conditions_view.dart';
 class TermsAndConditionsController extends NavigablePageController<TermsAndConditionsRoute> {
   /// Handles taps on the [AppBar] back button.
   void onBackPressed() {
-    context.go('/');
+    context.pop();
   }
 
   @override
