@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:herdgpt/router.dart';
 import 'package:herdgpt/screens/landing/landing_route.dart';
 import 'package:herdgpt/themes/dark_theme.dart';
 import 'package:herdgpt/themes/light_theme.dart';
@@ -11,7 +12,7 @@ class HerdGPTApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'HirePrep',
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -19,7 +20,7 @@ class HerdGPTApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: lightTheme,
       darkTheme: darkTheme,
-      home: const LandingRoute(),
+      routerConfig: router,
     );
   }
 }

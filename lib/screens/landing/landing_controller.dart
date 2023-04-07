@@ -12,6 +12,11 @@ class LandingController extends NavigablePageController<LandingRoute> {
   @override
   String screenName = 'Onboarding';
 
+  /// Handles taps on the main CTA button on the landing page
+  void letsGoooooooo() {
+    // TODO navigate to team setup route
+  }
+
   @override
   void initState() {
     if (kDebugMode == false) {

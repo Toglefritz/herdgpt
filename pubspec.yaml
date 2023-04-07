@@ -18,8 +18,12 @@ dependencies:
   firebase_analytics: ^10.1.4
   # Provides core Firebase services
   firebase_core: ^2.7.0
+  # Provides additional icons beyond the set available from Material Design
+  font_awesome_flutter: ^10.4.0
   # Provides font families
   google_fonts: ^4.0.3
+  # Navigation plugin supporting URL-based routing
+  go_router: ^6.5.5
   # Used for internationalization
   intl: any
 
