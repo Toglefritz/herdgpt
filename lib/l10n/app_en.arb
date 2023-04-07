@@ -12,6 +12,7 @@
   "passwordConfirmationFieldLabel": "Password again",
   "passwordFieldLabel": "Password",
   "privacyPolicy": "Privacy Policy",
+  "signInAnonymously": "Sign in Anonymously",
   "siteTitle": "HerdGPT",
   "termsAndConditions": "Terms and Conditions",
   "usernameFieldLabelHint": "Username (an email)",

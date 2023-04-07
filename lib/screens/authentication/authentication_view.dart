@@ -20,7 +20,6 @@ class AuthenticationView extends StatelessWidget {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: MainAppBar(
-          displayBackButton: true,
           bottom: TabBar(
             indicatorColor: Theme.of(context).primaryColor,
             tabs: [
