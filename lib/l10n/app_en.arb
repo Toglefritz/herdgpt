@@ -1,6 +1,9 @@
 {
   "getStartedButton": "Let's Go!",
   "landingPageTitle": "Build things with a crack team of AI teammates.",
+  "legalStuff": "Legal stuff:",
+  "privacyPolicy": "Privacy Policy",
   "siteTitle": "HerdGPT",
+  "termsAndConditions": "Terms and Conditions",
   "willFerrellCaption": "AI team, assemble!"
 }

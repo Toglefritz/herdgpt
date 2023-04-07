@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:herdgpt/screens/landing/components/footer.dart';
 
 import '../../components/app_bar/main_app_bar.dart';
 import '../../values/insets.dart';
@@ -71,10 +72,13 @@ class LandingView extends StatelessWidget {
                   ],
                 ),
               ),
+              // TODO add more product info
             ],
           ),
         ),
       ),
+      // Footer
+      bottomNavigationBar: const Footer(),
     );
   }
 }
