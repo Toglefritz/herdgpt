@@ -1,8 +1,16 @@
 /// An enumeration of all the image assets used in the application.
 enum Assets {
-  cow('cow'),
   aiTeamAssemble('ai_team_assemble'),
-  googleLogo('g_logo');
+  bear('bear'),
+  chicken('chicken'),
+  cow('cow'),
+  fox('fox'),
+  goat('goat'),
+  googleLogo('g_logo'),
+  penguin('penguin'),
+  pig('pig'),
+  pigeon('pigeon'),
+  rabbit('rabbit');
 
   /// The file path for the image asset.
   final String imagePath;
