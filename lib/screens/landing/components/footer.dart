@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
+import 'package:herdgpt/screens/landing/privacy_policy/privacy_policy_route.dart';
+import 'package:herdgpt/screens/landing/terms_and_conditions/terms_and_conditions_route.dart';
 
 import '../../../values/insets.dart';
 import 'footer_button.dart';
@@ -12,13 +15,13 @@ class Footer extends StatelessWidget {
   });
 
   /// Handles taps on the terms and conditions button.
-  void termsAndConditionsOnTap() {
-    // TODO go to terms and conditions page
+  void termsAndConditionsOnTap(BuildContext context) {
+    context.go(const TermsAndConditionsRoute().screenName);
   }
 
   /// Handles taps on the privacy policy button.
-  void privacyPolicyOnTap() {
-    // TODO go to privacy policy page
+  void privacyPolicyOnTap(BuildContext context) {
+    context.go(const PrivacyPolicyRoute().screenName);
   }
 
   @override
@@ -36,14 +39,14 @@ class Footer extends StatelessWidget {
           padding: const EdgeInsets.all(insetsSmall),
           child: FooterButton(
             text: AppLocalizations.of(context).termsAndConditions,
-            onPressed: termsAndConditionsOnTap,
+            onPressed: () => termsAndConditionsOnTap(context),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: insetsSmall, right: insetsMedium),
           child: FooterButton(
             text: AppLocalizations.of(context).privacyPolicy,
-            onPressed: privacyPolicyOnTap,
+            onPressed: () => privacyPolicyOnTap(context),
           ),
         ),
       ],
