@@ -3,14 +3,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../components/navigable_page_controller.dart';
-import '../../services/errors/showErrorSnackBar.dart';
+import '../../services/errors/show_error_snack_bar.dart';
 import '../../services/firebase/authentication/auth_methods.dart';
 import '../../services/firebase/authentication/sign_in_with_google.dart';
 import '../../services/firebase/create_user_function.dart';
 import '../../values/regex.dart';
 import '../loading/loading_view.dart';
+import '../team_setup/team_setup_route.dart';
 import 'create_account_route.dart';
 import 'create_account_view.dart';
 
@@ -214,8 +216,7 @@ class CreateAccountController extends NavigablePageController<CreateAccountRoute
       await createUserFunction();
 
       if (!mounted) return;
-
-      // TODO go to team setup route
+      context.go(const TeamSetupRoute().screenName);
     } catch (e) {
       showErrorSnackBar(context, AppLocalizations.of(context).errorCreatingAccount);
 

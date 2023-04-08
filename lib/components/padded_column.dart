@@ -7,10 +7,14 @@ class PaddedColumn extends StatelessWidget {
     super.key,
     required this.childrenPadding,
     required this.children,
+    this.mainAxisAlignment,
+    this.crossAxisAlignment,
   });
 
   final double childrenPadding;
   final List<Widget> children;
+  final MainAxisAlignment? mainAxisAlignment;
+  final CrossAxisAlignment? crossAxisAlignment;
 
   /// Returns a [List<Widget>] in which each widget in the
   List<Widget> getPaddedChildren() {
@@ -33,7 +37,8 @@ class PaddedColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
+      crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
       children: getPaddedChildren(),
     );
   }

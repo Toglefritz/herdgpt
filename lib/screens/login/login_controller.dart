@@ -2,6 +2,8 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:herdgpt/screens/team_setup/team_setup_route.dart';
 
 import '../../components/navigable_page_controller.dart';
 import '../../services/firebase/authentication/sign_in_with_google.dart';
@@ -46,7 +48,7 @@ class LoginController extends NavigablePageController<LoginRoute> {
       await signInWithGoogle();
 
       if (!mounted) return;
-      // TODO go to team setup route
+      context.go(const TeamSetupRoute().screenName);
     } catch (e) {
       debugPrint('Failed to sign in with Google with exception, $e');
     }
@@ -96,7 +98,7 @@ class LoginController extends NavigablePageController<LoginRoute> {
         debugPrint('User, ${userCredential?.user}, successfully authenticated');
 
         if (!mounted) return;
-        // TODO go to team setup route
+        context.go(const TeamSetupRoute().screenName);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           setState(() {

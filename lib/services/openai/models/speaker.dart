@@ -4,8 +4,7 @@ import '../../../values/assets.dart';
 /// [ChatConversation].
 enum Speaker {
   /// Identifies messages originating from the human operator of the app.
-  human(Assets.cow),
-
+  hooman(Assets.cow),
   bear(Assets.bear),
   chicken(Assets.chicken),
   fox(Assets.fox),
@@ -22,4 +21,30 @@ enum Speaker {
   final Assets avatar;
 
   const Speaker(this.avatar);
+
+  /// Returns the user-facing name used for the [Speaker].
+  String get name {
+    switch (this) {
+      case bear:
+        return 'Bear';
+      case Speaker.hooman:
+        return 'You';
+      case Speaker.chicken:
+        return 'Chicken';
+      case Speaker.fox:
+        return 'Fox';
+      case Speaker.goat:
+        return 'Goat';
+      case Speaker.penguin:
+        return 'Penguin';
+      case Speaker.pig:
+        return 'Pig';
+      case Speaker.pigeon:
+        return 'Pigeon';
+      case Speaker.rabbit:
+        return 'Rabbit';
+      case Speaker.system:
+        return '';
+    }
+  }
 }

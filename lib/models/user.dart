@@ -1,10 +1,10 @@
 import '../services/firebase/update_token_balance_function.dart';
+import '../services/openai/models/chat_conversation.dart';
 
 /// Represents the current user and the information contained within their Firebase user record.
-// TODO add OpenAI API integration
-class User {
+class Hooman {
   /// A history of past conversations between the user and the assistant.
-  //final List<ChatConversation> conversations;
+  final List<ChatConversation> conversations;
 
   /// A [DateTime] for when the user record was created.
   final DateTime createdAt;
@@ -15,30 +15,30 @@ class User {
   /// The balance of tokens available on the account.
   int tokenBalance;
 
-  User({
-    //required this.conversations,
+  Hooman({
+    required this.conversations,
     required this.createdAt,
     required this.emailAddress,
     required this.tokenBalance,
   });
 
-  /// Creates a [User] instance from the provided JSON data.
-  factory User.fromData(Map<String, dynamic> data) {
+  /// Creates a [Hooman] instance from the provided JSON data.
+  factory Hooman.fromData(Map<String, dynamic> data) {
     List<dynamic> conversationsData = data['conversations'];
-    //List<ChatConversation> conversations = conversationListFromData(conversationsData);
+    List<ChatConversation> conversations = conversationListFromData(conversationsData);
     DateTime createdAt = DateTime.parse(data['created_at']);
     String emailAddress = data['email'];
     int tokenBalance = data['token_balance'];
 
-    return User(
-      //conversations: conversations,
+    return Hooman(
+      conversations: conversations,
       createdAt: createdAt,
       emailAddress: emailAddress,
       tokenBalance: tokenBalance,
     );
   }
 
- /* /// Updates the [conversations] with a new message.
+  /// Updates the [conversations] with a new message.
   ///
   /// This method searches through [conversation] to find the [ChatConversation] with the same title as the
   /// provided [activeConversation]. If a [ChatConversation] with a matching title is found, its [messages] value
@@ -53,12 +53,12 @@ class User {
       ChatConversation targetConversation = targetConversationIterable.toList().first;
       targetConversation.messages = activeConversation.messages;
     }
-  }*/
+  }
 
-  /// Updates the token balance on the [User]'s account.
+  /// Updates the token balance on the [Hooman]'s account.
   ///
   /// Each completion from the OpenAI Chat Completions API is accompanied by a field indicating the number of tokens
-  /// used for the completion. This method deducts this number of tokens from the balance on the [User]'s account.
+  /// used for the completion. This method deducts this number of tokens from the balance on the [Hooman]'s account.
   /// This method
   Future<void> updateTokenBalance(int tokensUsed) async {
     tokenBalance -= tokensUsed;

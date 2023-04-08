@@ -9,18 +9,18 @@ import 'create_user_function.dart';
 /// This method uses the Flutter `cloud_functions` plugin to call the
 /// `getUser` Firebase Cloud Functions callable function with no
 /// arguments. The method returns a `Future<User>` that completes with the
-/// initialization of a [User] object from the contents of the Firebase
+/// initialization of a [Hooman] object from the contents of the Firebase
 /// file for the current user.
 ///
 /// If the function call fails, the method prints a debug message with the
 /// error details and rethrows the exception.
-Future<User> getUserFunction() async {
+Future<Hooman> getUserFunction() async {
   final HttpsCallable getTokenBalance = FirebaseFunctions.instance.httpsCallable('getUser');
 
   try {
     final result = await getTokenBalance.call();
 
-    User user = User.fromData(result.data);
+    Hooman user = Hooman.fromData(result.data);
 
     debugPrint('Retrieved user data');
 
