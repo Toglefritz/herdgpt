@@ -1,9 +1,9 @@
 {
   "continueWithGoogle": "Continue with Google",
-  "createAccount": "Create account",
+  "createAccount": "Create Account",
   "createAccountButtonText": "Make it so",
   "createAccountMessage": "Create a shiny new account!",
-  "errorCreatingAccount": "Whelp. Creating your account didn't quite work. Don't worry. We'll check on the logs for this.'",
+  "errorCreatingAccount": "Whelp. Creating your account didn't quite work. Don't worry. We'll check on the logs for this.",
   "getStartedButton": "Let's Go!",
   "landingPageTitle": "Build things with a crack team of AI teammates.",
   "legalStuff": "Legal stuff:",

@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 /// If there is an error, the function catches the error and prints an error message to the console. If the error
 /// is a CloudFunctionsException, the function prints the error message from the exception. If the error is not
 /// a CloudFunctionsException, the function prints the error message itself.
-
 Future<void> clearConversations() async {
   final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('clearConversations');
   try {

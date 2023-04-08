@@ -14,7 +14,6 @@ import 'create_user_function.dart';
 ///
 /// If the function call fails, the method prints a debug message with the
 /// error details and rethrows the exception.
-
 Future<User> getUserFunction() async {
   final HttpsCallable getTokenBalance = FirebaseFunctions.instance.httpsCallable('getUser');
 

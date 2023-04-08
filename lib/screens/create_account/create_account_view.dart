@@ -5,8 +5,10 @@ import '../../components/authentication_form_field.dart';
 import '../../components/authentication_page.dart';
 import '../../components/padded_column.dart';
 import '../../components/primary_cta_button.dart';
+import '../../components/sign_in_anonymously_button.dart';
 import '../../components/sign_in_with_google_button.dart';
 import '../../values/insets.dart';
+import '../authentication/authentication_controller.dart';
 import 'create_account_controller.dart';
 
 /// View for the [CreateAccountRoute].
@@ -67,6 +69,12 @@ class CreateAccountView extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          const Divider(
+            thickness: 1.0,
+          ),
+          SignInAnonymouslyButton(
+            onTap: () => AuthenticationController.signInAnonymously(),
           ),
         ],
       ),

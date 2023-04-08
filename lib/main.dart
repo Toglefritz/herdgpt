@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:herdgpt/services/firebase/initialize_remote_configs.dart';
 
 import 'firebase_options.dart';
 import 'herdgpt_app.dart';
@@ -23,6 +24,9 @@ Future<void> main() async {
       debugPrint('Failed to initialize Firebase emulators with exception, $e');
     }
   }
+
+  // Firebase Remote Configs setup
+  RemoteConfigs.initializeRemoteConfigs();
 
   runApp(const HerdGPTApp());
 }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:herdgpt/components/primary_cta_button.dart';
+import 'package:herdgpt/screens/authentication/authentication_controller.dart';
 
 import '../../components/authentication_form_field.dart';
 import '../../components/authentication_page.dart';
 import '../../components/padded_column.dart';
+import '../../components/sign_in_anonymously_button.dart';
 import '../../components/sign_in_with_google_button.dart';
 import '../../values/insets.dart';
 import 'login_controller.dart';
@@ -62,6 +64,12 @@ class LoginView extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          const Divider(
+            thickness: 1.0,
+          ),
+          SignInAnonymouslyButton(
+            onTap: () => AuthenticationController.signInAnonymously(),
           ),
         ],
       ),

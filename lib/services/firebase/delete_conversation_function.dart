@@ -14,7 +14,6 @@ import 'package:flutter/material.dart';
 ///
 /// If the function call fails, the method prints a debug message with the
 /// error details and rethrows the exception.
-
 Future<void> deleteConversation(String title) async {
   final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('deleteConversation');
   try {

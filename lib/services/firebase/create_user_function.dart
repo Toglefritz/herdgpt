@@ -18,7 +18,6 @@ import 'initialize_remote_configs.dart';
 ///
 /// If the function call fails, the method prints a debug message with the error
 /// details and rethrows the exception.
-
 Future<void> createUserFunction() async {
   final HttpsCallable createUser = FirebaseFunctions.instance.httpsCallable('createUser');
 

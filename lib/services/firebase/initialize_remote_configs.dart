@@ -1,7 +1,6 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 /// The keys used for Firebase Remote Config variables.
-
 enum RemoteConfigKeys {
   initialTokenBalance('initial_token_balance');
 
@@ -12,7 +11,6 @@ enum RemoteConfigKeys {
 
 /// Contains fields and methods related to Firebase Remote Configs, which are used to set configurations
 /// options used by the app without requiring a new app build.
-
 class RemoteConfigs {
   static FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.instance;
 

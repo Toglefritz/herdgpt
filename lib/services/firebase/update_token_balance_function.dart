@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 ///
 /// If the function call fails, the method prints a debug message with the
 /// error details and rethrows the exception.
-
 Future<void> updateTokenBalanceFunction({required int tokenBalance}) async {
   final HttpsCallable updateTokenBalance = FirebaseFunctions.instance.httpsCallable('updateTokenBalance');
 
