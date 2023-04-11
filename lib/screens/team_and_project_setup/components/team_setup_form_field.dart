@@ -8,13 +8,18 @@ import '../../../values/insets.dart';
 class TeamSetupFormField extends StatefulWidget {
   const TeamSetupFormField({
     super.key,
+    required this.initialValue,
     required this.avatar,
     required this.labelText,
     this.maxLength,
+    this.onChanged,
     required this.validator,
     this.onSubmit,
     this.additionalError,
   });
+
+  /// The initial value of the text input fields.
+  final String initialValue;
 
   /// An avatar image to display on the left side of the field.
   final Assets avatar;
@@ -24,6 +29,9 @@ class TeamSetupFormField extends StatefulWidget {
 
   /// The maximum allowed length of the input.
   final int? maxLength;
+
+  /// A callback for when the content of the form changes.
+  final Function(String)? onChanged;
 
   /// A function used to validate input to the field.
   final String? Function(String?) validator;
@@ -53,6 +61,7 @@ class _TeamSetupFormFieldState extends State<TeamSetupFormField> {
         Padding(
           padding: const EdgeInsets.only(left: 36),
           child: TextFormField(
+            initialValue: widget.initialValue,
             cursorColor: Theme.of(context).primaryColorDark,
             maxLines: null,
             minLines: 3,
@@ -90,6 +99,7 @@ class _TeamSetupFormFieldState extends State<TeamSetupFormField> {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            onChanged: widget.onChanged,
             validator: (value) => widget.validator(value),
             onFieldSubmitted: widget.onSubmit != null ? (value) => widget.onSubmit!() : null,
           ),

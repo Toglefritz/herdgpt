@@ -12,7 +12,7 @@ import '../../services/firebase/authentication/sign_in_with_google.dart';
 import '../../services/firebase/create_user_function.dart';
 import '../../values/regex.dart';
 import '../loading/loading_view.dart';
-import '../team_setup/team_setup_route.dart';
+import '../team_and_project_setup/team_and_project_setup_route.dart';
 import 'create_account_route.dart';
 import 'create_account_view.dart';
 
@@ -216,7 +216,7 @@ class CreateAccountController extends NavigablePageController<CreateAccountRoute
       await createUserFunction();
 
       if (!mounted) return;
-      context.go(const TeamSetupRoute().screenName);
+      context.go(const TeamAndProjectSetupRoute().screenName);
     } catch (e) {
       showErrorSnackBar(context, AppLocalizations.of(context).errorCreatingAccount);
 

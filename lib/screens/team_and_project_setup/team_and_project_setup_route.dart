@@ -1,4 +1,4 @@
-import 'package:herdgpt/screens/team_setup/team_setup_controller.dart';
+import 'package:herdgpt/screens/team_and_project_setup/team_and_project_setup_controller.dart';
 
 import '../../components/navigable_page.dart';
 
@@ -7,12 +7,12 @@ import '../../components/navigable_page.dart';
 /// summarized resume, and a type of interview. This information is used to create [Role.system] prompts for the
 /// assistant and for prompt engineering on subsequent prompts in the mock interview process.
 
-class TeamSetupRoute extends NavigablePage {
+class TeamAndProjectSetupRoute extends NavigablePage {
   @override
   String get screenName => '/teamsetup';
 
-  const TeamSetupRoute({super.key});
+  const TeamAndProjectSetupRoute({super.key});
 
   @override
-  TeamSetupController createState() => TeamSetupController();
+  TeamAndProjectSetupController createState() => TeamAndProjectSetupController();
 }

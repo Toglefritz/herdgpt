@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:herdgpt/screens/team_and_project_setup/team_and_project_setup_view.dart';
 
 import '../../components/navigable_page_controller.dart';
 import '../../models/user.dart';
@@ -12,12 +13,11 @@ import '../../services/firebase/delete_conversation_function.dart';
 import '../../services/firebase/get_user_function.dart';
 import '../../services/openai/models/chat_conversation.dart';
 import '../../services/openai/models/speaker.dart';
-import 'team_setup_route.dart';
-import 'team_setup_view.dart';
+import 'team_and_project_setup_route.dart';
 
-/// Controller for the [TeamSetupRoute].
+/// Controller for the [TeamAndProjectSetupRoute].
 // TODO add ability to add more agents
-class TeamSetupController extends NavigablePageController<TeamSetupRoute> {
+class TeamAndProjectSetupController extends NavigablePageController<TeamAndProjectSetupRoute> {
   /// A [Scaffold] key used to control the [Drawer]s.
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -32,8 +32,19 @@ class TeamSetupController extends NavigablePageController<TeamSetupRoute> {
   /// A list of AI agents with which the [user] will collaborate on a problem.
   List<Speaker> team = [];
 
-  /// A key used for the username and password login form.
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  /// A key used for the team role description form.
+  final GlobalKey<FormState> teamRoleFormKey = GlobalKey<FormState>();
+
+  /// A key used for the project description form.
+  final GlobalKey<FormState> projectFormKey = GlobalKey<FormState>();
+
+  /// The contents of the team setup fields, used to save the state of the form when the form transitions on and
+  /// off stage.
+  List<String> teamDescriptionFormState = ['', ''];
+
+  /// The contents of the project description field, used to save the state of the field when it transitions on and
+  /// off stage.
+  String projectDescriptionFieldState = '';
 
   @override
   void initState() {
@@ -136,6 +147,20 @@ class TeamSetupController extends NavigablePageController<TeamSetupRoute> {
     }
   }
 
+  /// A callback for when the contents of any of the fields in the team setup form are changed.
+  ///
+  /// This method is used to save the state of the team setup form whenever the contents of that form is changed.
+  void onTeamDescriptionChanged({required String fieldContents, required int index}) {
+    teamDescriptionFormState[index] = fieldContents;
+  }
+
+  /// A callback for when the contents of the project description field is changed.
+  ///
+  /// This method is used to save the state of the form whenever the contents are changed.
+  void onProjectDescriptionChanged({required String fieldContents}) {
+    projectDescriptionFieldState = fieldContents;
+  }
+
   /// Validates the job posting field.
   String? validateTeamMemberJobField(String? value) {
     // TODO add content moderation API
@@ -149,7 +174,7 @@ class TeamSetupController extends NavigablePageController<TeamSetupRoute> {
 
   /// Handles taps on the CTA button.
   void handleStartButtonTap() {
-    if (formKey.currentState!.validate()) {
+    if (teamRoleFormKey.currentState!.validate() && projectFormKey.currentState!.validate()) {
       // TODO go to chat route
     }
   }
@@ -160,5 +185,5 @@ class TeamSetupController extends NavigablePageController<TeamSetupRoute> {
   }
 
   @override
-  Widget build(BuildContext context) => TeamSetupView(this);
+  Widget build(BuildContext context) => TeamAndProjectSetupView(this);
 }

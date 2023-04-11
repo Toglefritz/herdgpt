@@ -1,12 +1,15 @@
+import 'dart:core';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:herdgpt/screens/authentication/authentication_route.dart';
+import 'package:herdgpt/screens/chat/chat_route.dart';
+import 'package:herdgpt/screens/chat/models/conversation_info.dart';
 import 'package:herdgpt/screens/create_account/create_account_route.dart';
 import 'package:herdgpt/screens/landing/landing_route.dart';
 import 'package:herdgpt/screens/login/login_route.dart';
 import 'package:herdgpt/screens/privacy_policy/privacy_policy_route.dart';
-import 'package:herdgpt/screens/team_setup/team_setup_route.dart';
+import 'package:herdgpt/screens/team_and_project_setup/team_and_project_setup_route.dart';
 import 'package:herdgpt/screens/terms_and_conditions/terms_and_conditions_route.dart';
 
 /// GoRouter configuration.
@@ -20,7 +23,7 @@ GoRouter router = GoRouter(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
           if (snapshot.hasData) {
-            return const TeamSetupRoute();
+            return const TeamAndProjectSetupRoute();
           }
           return const LandingRoute();
         },
@@ -47,8 +50,17 @@ GoRouter router = GoRouter(
       builder: (context, state) => const AuthenticationRoute(),
     ),
     GoRoute(
-      path: const TeamSetupRoute().screenName,
-      builder: (context, state) => const TeamSetupRoute(),
+      path: const TeamAndProjectSetupRoute().screenName,
+      builder: (context, state) => const TeamAndProjectSetupRoute(),
+    ),
+    GoRoute(
+      path: '/chat', // TODO create enum of page paths
+      builder: (context, state) {
+        ConversationInfo stateData = state as ConversationInfo;
+        return ChatRoute(
+          conversationInfo: stateData,
+        );
+      },
     ),
   ],
 );
