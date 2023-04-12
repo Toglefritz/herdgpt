@@ -111,6 +111,17 @@ class TeamAndProjectSetupController extends NavigablePageController<TeamAndProje
     });
   }
 
+  /// Adds one more team member to the current team, up to a maximum of eight total members on the team, not
+  /// including you, dear human.
+  void addTeamMember() {
+    if (team.length < _roster.length) {
+      setState(() {
+        teamDescriptionFormState.add('');
+        team.add(_roster[team.length]);
+      });
+    }
+  }
+
   /// Calls a Firebase callable function to delete the conversation from the user's account and removes the
   /// conversation from the [Hooman] instance, [user].
   Future<void> deletePastConversation(String? title) async {
