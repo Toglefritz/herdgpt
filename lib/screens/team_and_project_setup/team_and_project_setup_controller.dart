@@ -112,12 +112,29 @@ class TeamAndProjectSetupController extends NavigablePageController<TeamAndProje
   }
 
   /// Adds one more team member to the current team, up to a maximum of eight total members on the team, not
-  /// including you, dear human.
+  /// including you, dear human. The function loops through the [_roster] and adds the first benched team member
+  /// who is not already on the team.
   void addTeamMember() {
     if (team.length < _roster.length) {
       setState(() {
-        teamDescriptionFormState.add('');
-        team.add(_roster[team.length]);
+        for (Speaker agent in _roster) {
+          if (!team.contains(agent)) {
+            teamDescriptionFormState.add('');
+            team.add(agent);
+            return;
+          }
+        }
+      });
+    }
+  }
+
+  /// Removes a team member from the team. We are pretty sure they are not actually killed, just put on the bench. But
+  /// you must always have at least two members on the team.
+  void removeTeamMember(int index) {
+    if (team.length > 2) {
+      setState(() {
+        teamDescriptionFormState.removeAt(index);
+        team.removeAt(index);
       });
     }
   }

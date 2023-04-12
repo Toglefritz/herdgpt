@@ -16,6 +16,7 @@ class TeamSetupFormField extends StatefulWidget {
     required this.validator,
     this.onSubmit,
     this.additionalError,
+    this.onDelete,
   });
 
   /// The initial value of the text input fields.
@@ -41,6 +42,9 @@ class TeamSetupFormField extends StatefulWidget {
 
   /// An additional error to display outside of those returned by the [validator].
   final String? additionalError;
+
+  /// A callback used when the "delete" key is tapped.
+  final Function()? onDelete;
 
   @override
   State<TeamSetupFormField> createState() => _TeamSetupFormFieldState();
@@ -111,6 +115,17 @@ class _TeamSetupFormFieldState extends State<TeamSetupFormField> {
             width: 72,
           ),
         ),
+        if (widget.onDelete != null)
+          Positioned(
+            right: 0,
+            top: 0,
+            child: IconButton(
+              icon: const Icon(
+                Icons.cancel_outlined,
+              ),
+              onPressed: widget.onDelete,
+            ),
+          ),
       ],
     );
   }
