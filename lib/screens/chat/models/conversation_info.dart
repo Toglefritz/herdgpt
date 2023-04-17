@@ -4,7 +4,7 @@ import 'package:herdgpt/services/openai/models/chat_conversation.dart';
 /// conversation. This information includes either a description of the AI agent members of the team or a past
 /// [ChatConversation], but not both.
 class ConversationInfo {
-  final String? assistantInformation;
+  final List<String>? assistantInformation;
   final ChatConversation? activeConversation;
   final String? projectInformation;
 

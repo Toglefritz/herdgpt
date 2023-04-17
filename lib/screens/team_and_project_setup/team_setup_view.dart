@@ -79,6 +79,7 @@ class TeamSetupView extends StatelessWidget {
                         ),
                         validator: state.validateTeamMemberJobField,
                         onDelete: state.team.length > 2 ? () => state.removeTeamMember(index) : null,
+                        additionalError: state.teamDescriptionFormAdditionalErrors[index],
                       ),
                     ],
                   );

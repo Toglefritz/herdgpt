@@ -3,6 +3,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:herdgpt/extensions/nullable_string_list_extension.dart';
+import 'package:herdgpt/screens/chat/models/conversation_info.dart';
 import 'package:herdgpt/screens/team_and_project_setup/team_and_project_setup_view.dart';
 
 import '../../components/navigable_page_controller.dart';
@@ -45,6 +48,12 @@ class TeamAndProjectSetupController extends NavigablePageController<TeamAndProje
   /// The contents of the project description field, used to save the state of the field when it transitions on and
   /// off stage.
   String projectDescriptionFieldState = '';
+
+  /// A list of validation errors to display for each field in the team roles description form.
+  List<String?> teamDescriptionFormAdditionalErrors = [null, null];
+
+  /// A validation error to display on the project description field.
+  String? projectDescriptionFieldAdditionalError;
 
   @override
   void initState() {
@@ -121,6 +130,7 @@ class TeamAndProjectSetupController extends NavigablePageController<TeamAndProje
           if (!team.contains(agent)) {
             teamDescriptionFormState.add('');
             team.add(agent);
+            teamDescriptionFormAdditionalErrors.add(null);
             return;
           }
         }
@@ -135,6 +145,7 @@ class TeamAndProjectSetupController extends NavigablePageController<TeamAndProje
       setState(() {
         teamDescriptionFormState.removeAt(index);
         team.removeAt(index);
+        teamDescriptionFormAdditionalErrors.removeAt(index);
       });
     }
   }
@@ -180,6 +191,9 @@ class TeamAndProjectSetupController extends NavigablePageController<TeamAndProje
   /// This method is used to save the state of the team setup form whenever the contents of that form is changed.
   void onTeamDescriptionChanged({required String fieldContents, required int index}) {
     teamDescriptionFormState[index] = fieldContents;
+    setState(() {
+      teamDescriptionFormAdditionalErrors.setAllElementsToNull();
+    });
   }
 
   /// A callback for when the contents of the project description field is changed.
@@ -187,6 +201,29 @@ class TeamAndProjectSetupController extends NavigablePageController<TeamAndProje
   /// This method is used to save the state of the form whenever the contents are changed.
   void onProjectDescriptionChanged({required String fieldContents}) {
     projectDescriptionFieldState = fieldContents;
+    setState(() {
+      projectDescriptionFieldAdditionalError = null;
+    });
+  }
+
+  /// Validates the most recent input into the team member roles fields, stored in the variable,
+  /// [teamDescriptionFormState]. This function exists to handle form validation when the team setup fields themselves
+  /// are not in the widget tree. Returns null if no validation errors are detected or a String indicating the
+  /// error if there are issues in the form.
+  List<String?> validateTeamRolesForm() {
+    List<String?> errors = [];
+
+    // Check each description in the team role descriptions form
+    for(String teamMemberRole in teamDescriptionFormState) {
+      String? teamMemberRoleValidation = validateTeamMemberJobField(teamMemberRole);
+      if(teamMemberRoleValidation != null) {
+        errors.add(teamMemberRoleValidation);
+      } else {
+        errors.add(null);
+      }
+    }
+
+    return errors;
   }
 
   /// Validates the job posting field.
@@ -194,16 +231,60 @@ class TeamAndProjectSetupController extends NavigablePageController<TeamAndProje
     // TODO add content moderation API
 
     if (value == null || value.isEmpty) {
-      return 'Um... please tell this agent what to do.';
+      return AppLocalizations.of(context).teamMemberDescriptionFieldEmpty;
+    }
+
+    return null;
+  }
+
+  /// Validates the most recent input into the project description field, stored in the variable,
+  /// [projectDescriptionFieldState]. This function exists to handle form validation when the project description
+  /// field itself is not in the widget tree. Returns null if no validation errors are detected or a String indicating
+  /// the error if there are issues in the form.
+  String? validateProjectDescriptionForm() {
+    return validateProjectDescriptionField(projectDescriptionFieldState);
+  }
+
+  /// Validates the job posting field.
+  String? validateProjectDescriptionField(String? value) {
+    // TODO add content moderation API
+
+    if (value == null || value.isEmpty) {
+      return AppLocalizations.of(context).projectDescriptionFieldEmpty;
     }
 
     return null;
   }
 
   /// Handles taps on the CTA button.
+  ///
+  /// When the CTA button is tapped, this controller will validate the contents of the team member descriptions
+  /// form and the project description form based on the validation rules in several other methods in this
+  /// controller. If no errors are detected, this method will assemble an instance of [ConversationInfo] and send
+  /// that instance to the [ChatRoute] to continue the flow. If validation errors are detected, this method will
+  /// set error conditions on the relevant form fields.
   void handleStartButtonTap() {
-    if (teamRoleFormKey.currentState!.validate() && projectFormKey.currentState!.validate()) {
-      // TODO go to chat route
+    List<String?> teamRolesFormValidation = validateTeamRolesForm();
+    String? projectDescriptionFormValidation = validateProjectDescriptionForm();
+
+    // Check that no validation errors are detected.
+    if (teamRolesFormValidation.areAllElementsNull && projectDescriptionFormValidation == null) {
+      ConversationInfo conversationInfo = ConversationInfo(
+        assistantInformation: teamDescriptionFormState,
+        projectInformation: projectDescriptionFieldState,
+      );
+
+      context.go(
+        '/chat',
+        extra: conversationInfo,
+      );
+    }
+    // Errors were detected in one or both of the forms.
+    else {
+      setState(() {
+        teamDescriptionFormAdditionalErrors = teamRolesFormValidation;
+        projectDescriptionFieldAdditionalError = projectDescriptionFormValidation;
+      });
     }
   }
 
